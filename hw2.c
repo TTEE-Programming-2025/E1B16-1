@@ -85,6 +85,32 @@ int main(void){
 		fflush(stdin);
 		goto ask1;}/*輸入錯誤，反回重新輸入字元*/
 	}
+	
+	if(manu_key=='b'||manu_key=='b') {/*若輸入值c1為B或b，清空螢幕並要求輸入整數1~9*/
+		int i1,j1,num;
+		system("CLS");
+		fflush(stdin);
+		ask2:/*此處標記以便之後goto的使用*/
+		printf("輸入一個1~9的整數：");
+		scanf("%d",&num); 
+		if(num>=1&&num<=9){/*若輸入字符介於1~9，印出乘法表*/
+		printf("1*1~%d*%d的乘法表如下:\n",num,num);
+		for(i1=1;i1<=num;i1++){/*i值由1開始，+至輸入的整數p1停止*/
+			for(j1=1;j1<=num;j1++){/*j由1開始，同樣+至輸入的整數p1停止*/
+				printf("%d*%d=%d  ",i1,j1,i1*j1)	;
+			}
+			printf(" \n"); 
+		}
+		system("pause");
+		system("CLS");
+		goto manu; /*程式停止，按任意鍵回到選單*/
+	}else{
+	system("CLS");
+	printf("請重新");
+	fflush(stdin); 
+	goto ask2;}/*輸入錯誤，反回重新輸入字元*/
+	}
+	
 	return 0;
 }
 
