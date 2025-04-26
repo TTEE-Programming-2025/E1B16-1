@@ -111,6 +111,34 @@ int main(void){
 	goto ask2;}/*輸入錯誤，反回重新輸入字元*/
 	}
 	
+	char opt3;
+	if(manu_key=='c'||manu_key=='C') {
+	printf("\'Continue？(y/n)\'");
+	ask3:/*此處標記以便之後goto的使用*/
+	printf("\n若要回到選單，請按Y或y");
+	printf("\n若要結束程式，請按N或n");
+	printf("：\n");
+	fflush(stdin);
+	scanf("%s",&opt3);
+	if(opt3=='Y'||opt3=='y'){
+	system("CLS");
+	fflush(stdin);
+	goto manu;/*輸入Y或y，回到選單*/
+	}
+	else if(opt3=='N'||opt3=='n'){
+		return 0;/*輸入N或n，程式結束*/
+	}
+	else{
+		system("CLS");
+		printf("輸入錯誤，");
+		goto ask3 ;/*輸入字元非Y,y或N,n，反回重新輸入字元*/
+	}
+}
+	else{
+		system("CLS");
+		goto manu;
+	}
+	
 	return 0;
 }
 
