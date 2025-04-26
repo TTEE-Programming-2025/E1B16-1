@@ -54,6 +54,37 @@ int main(void){
 	printf("\n|--------------------------------------|\n");
 	printf("\n         請輸入A或a,B或b以繼續 ：       \n");
 	
+	char tri, manu_key;
+	int letter,i,j,k;
+	scanf(" %s",&manu_key);
+	if(manu_key=='a'||manu_key=='A') { /*若輸入值c1為A或a，清空螢幕並要求輸入字元*/
+		system("CLS");
+		ask1:/*此處標記以便之後goto的使用*/
+		printf("輸入一個a~n的字元(僅限小寫)：");
+		scanf(" %s",&tri);
+		letter=tri;/*將a2設為輸入字元c2的ascii code*/
+		if(tri>='a'&&tri<='n'){ /*若輸入的字元c2介於a~n之間，執行下面for迴圈產生直角三角形*/
+		printf("\n");
+		for(i=letter-'a';i>=0;i--){/*i用來計算所需的列數(輸出\n)，因為輸入值介於a~n，
+		因此將i起始值設為輸入值減去'a'，只要i大於等於0，i--，並輸出\n*/
+			for(k=i;k>0;k--){/*k用來計算空格的輸出量，只要i大於0，k--並輸出一個空格*/
+				printf(" ");
+			}
+			for(j=i;j<=letter-'a';j++){/*j用來輸出字符，又因為要呈現出直角三角形，放在k的下方，
+			                        j初始值根據i值，若i小於等於a2-'a'，j++並輸出字符j+'a' */
+				printf("%c",j+'a');
+			}
+			printf("\n");
+		}
+		fflush(stdin);
+		system("pause");
+		system("CLS");
+		goto manu; /*程式停止，按任意鍵回到選單*/
+		}else{
+		printf("請重新");
+		fflush(stdin);
+		goto ask1;}/*輸入錯誤，反回重新輸入字元*/
+	}
 	return 0;
 }
 
