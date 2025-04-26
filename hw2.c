@@ -27,6 +27,32 @@ int main(void){
 	system("pause");
 	system("CLS");
 	
+	int key,wrong=0; /*宣告字串key存儲輸入的密碼，變數wrong紀錄輸入錯誤次數*/
+	printf("請輸入密碼(密碼是2025)：");
+	do{
+		scanf("%d",&key);
+		if(key==2025){
+		fflush(stdin);
+		system("CLS");
+		break ; } 
+		else{
+		wrong++;
+		fflush(stdin);
+		printf("已輸入錯誤%d次，錯誤三次就再見\n",wrong);
+		if(wrong==3){
+		printf("掰掰");return 0;}}		
+	}while(wrong<3);
+	/*若輸入key為2025，跳出if執行下一步；不為則wrong值+1，超過三次結束程式*/
+	
+	manu:/*此處標記以便之後goto的使用*/
+	printf("\n|--------------------------------------|");
+	printf("\n|           a.畫出直角三角形           |");
+	printf("\n|--------------------------------------|");
+	printf("\n|             b.顯示乘法表             |");
+	printf("\n|--------------------------------------|");
+	printf("\n|                c.結束                |");
+	printf("\n|--------------------------------------|\n");
+	printf("\n         請輸入A或a,B或b以繼續 ：       \n");
 	
 	return 0;
 }
