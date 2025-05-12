@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<time.h> 
-#include<stdbool.h>
+#include<time.h> // use time(0) to get the current second as the seed of rand()
+#include<stdbool.h>//to express true and false
 
 void dot(char seat[9][9]){//turn all the element in seat into '.'
 	int i,j;
@@ -13,21 +13,21 @@ void dot(char seat[9][9]){//turn all the element in seat into '.'
 }
 
 void random(char seat[9][9]){
-	srand(time(0));//make sure seat is difference everytime
+	srand(time(0));//make seat difference in every moment
 	
-	int booked=0;//generate 10 seat booked
+	int booked=0;//generate 10 seats booked
 	while(booked<10){
-		int row=rand()%9;
-		int col=rand()%9;
+		int row=rand()%9;//remainder of a random number divided by 9 ,
+		int col=rand()%9;//to get random number 1~8
 		
-		if(seat[row][col]=='.'){
+		if(seat[row][col]=='.'){//turn'.'into'*' to represent the seat booked
 		seat[row][col]='*';
 		booked++; 
 		}
 	}
 }
 
-void show(char seat[9][9]){
+void show(char seat[9][9]){//showing the seats
 	int i,j;
 	for(i=8;i>=0;i--){
 		printf("%d-", i+1);//row number
@@ -41,16 +41,18 @@ void show(char seat[9][9]){
 }
 
 bool check(char seat[9][9],int row,int col, int num, bool h){
+	//to check the seat availability,
+	//bool h:true for the horizontal direction,false for the vertical
 	int i;
 		if(h){
-			if(col+num>9){
+			if(col+num>9){//start from seat[row][col],cheak isn't all the num seats to the right is '.'
 				return false;}
 			for(i=0;i<num;i++){
 				if(seat[row][col+i]!='.'){return false;
 				}
 			}}
 		else{
-				if(row+num>9){
+				if(row+num>9){//start from seat[row][col],cheak isn't all the num seats down is '.'
 					return false;
 				}
 				for(i=0;i<num;i++){
@@ -65,9 +67,9 @@ bool check(char seat[9][9],int row,int col, int num, bool h){
 			
 		
 
-bool arr(char seat[9][9],int num){
+bool arr(char seat[9][9],int num){//to find enough seats arrangement
 	int i,j,k;
-	for(i=0;i<9;i++){
+	for(i=0;i<9;i++){//try horizontal arrangement
 		for(j=0;j<=9-num;j++){
 			if(check(seat,i,j,num,true)){
 				for(k=0;k<num;k++){
@@ -79,7 +81,7 @@ bool arr(char seat[9][9],int num){
 	}
 	
 	
-	for(j=0;j<9;j++){
+	for(j=0;j<9;j++){//try vertical arrangement
 		for(i=0;i<=9-num;i++){
 		if(check(seat,i,j,num,false)){
 			for(k=0;k<num;k++){
@@ -90,7 +92,7 @@ bool arr(char seat[9][9],int num){
 	}
 }
 	
-	if(num==4){
+	if(num==4){//try 4 arrangement seats
 		for(i=0;i<8;i++){
 			for(j=0;j<8;j++){
 				if(seat[i][j]=='.'&& seat[i][j+1]=='.'&&
@@ -158,7 +160,7 @@ int main(void){
 	char manu;
 	printf("enter the choice you want¡G");
 	scanf(" %c",&manu);
-	if(manu=='a'){
+	if(manu=='a'){//choice a
 		system("CLS");
 		char seat[9][9];
 		dot(seat);
@@ -172,7 +174,7 @@ int main(void){
 		goto manu;
 	}
 	
-	if(manu=='b'){
+	if(manu=='b'){//choice b
 		system("CLS");
 		char seat[9][9];
 		dot(seat);
@@ -197,10 +199,10 @@ int main(void){
 			char sb;
 			int i,j;
 			scanf(" %c",&sb);
-			if(sb=='y'){
+			if(sb=='y'){//enter y,turn all the seats that just booking as '@'into '*'
 				for(i=0;i<9;i++){
 					for(j=0;j<9;j++){
-						if(seat[i][j]=='@'){
+						if(seat[i][j]=='@'){//turns the seat '@'into'*' to express the seat is successful booked 
 							seat[i][j]='*';
 						}
 					}
@@ -217,7 +219,7 @@ int main(void){
 		
 		}
 		
-	if(manu=='c'){
+	if(manu=='c'){//choice c
 		system("CLS");
 		char seat[9][9];
 		dot(seat);
@@ -237,20 +239,20 @@ int main(void){
 		
 		for(c=0;c<askc;c++){
 			ask_c2:
-			printf("enter row and column of the seat %d(e.g. 3 5)",c+1);
-			scanf("%d %d", &rowc, &colc);
+			printf("enter row and column of the seat %d(e.g. 3-5)",c+1);
+			scanf("%d-%d", &rowc, &colc);
 			
-			if(rowc<1||rowc>9||colc<1||colc>9){
+			if(rowc<1||rowc>9||colc<1||colc>9){//play wrong if the seat isn't exist
 				printf("wrong\n");
 				goto ask_c2;
 			}
 			
-			if(seat[rowc-1][colc-1]!='.'){
+			if(seat[rowc-1][colc-1]!='.'){//play wrong if the seat is already taken
 				printf("seat %d-%d is already taken!\n",rowc,colc);
 				goto ask_c2;
 			}
 			
-			seat[rowc-1][colc-1]='@';
+			seat[rowc-1][colc-1]='@';//turns the seat into'@' to express the seat is successful booked 
 		}
 		
 		printf("\nyour selected seat :\n");
@@ -259,7 +261,7 @@ int main(void){
 		
 		system("PAUSE");
 		
-		for(ii=0;ii<9;ii++){
+		for(ii=0;ii<9;ii++){//turn all the seats that just booking as '@'into '*'
 			for(jj=0;jj<9;jj++){
 				if(seat[ii][jj]=='@'){
 					seat[ii][jj]=='*';
@@ -290,7 +292,19 @@ int main(void){
 	
 	
 	return 0;}
-		
+	/*my learning journey in daveloping the seat booking system*/
+	/*To be honest, most of this code was actually generated with AI tools. 
+	Initially, I had no idea how to make seats appear randomly, 
+	but after consulting AI, I learned about the <time.h> library and functions 
+	like srand() and rand() that use time-based calculations to simulate randomness. 
+	Then, for finding consecutive or specific seats in randomized layouts, 
+	I encountered <stdbool.h>, which simplifies true/false logic in checks.
+	While I¡¦ve tried to break things down step by step and 
+	added comments to understand these unfamiliar concepts, 
+	I¡¦m still struggling to fully grasp Boolean types and the design logic behind the AI-provided code. 
+	The structure works, but the underlying principles¡X
+	like why certain functions are modularized or how Boolean values streamline conditions¡X
+	aren¡¦t entirely clear to me yet. */
 		
 		
 		
