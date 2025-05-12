@@ -267,7 +267,7 @@ int main(void){
 			}
 		}
 		system("CLS");
-		goto manu;	
+		goto manu ;	
 		}
 		
 	if(manu=='d'){
