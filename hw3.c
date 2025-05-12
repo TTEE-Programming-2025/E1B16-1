@@ -131,7 +131,7 @@ int main(void){
 	system("CLS");
 	int key ,wrong=0;
 	pass:
-	printf("輸入密碼(2025)\n");
+	printf("enter password (2025)\n");
 	scanf("%d",&key);
 	if(key==2025){
 		system("CLS");
@@ -139,9 +139,9 @@ int main(void){
 	}
 	else{
 		wrong++;
-		printf("輸入錯誤%d次\n",wrong);
+		printf("wrong enter %d time(s)\n",wrong);
 		if(wrong==3){
-			printf("再見\n");
+			printf("bye bye ~\n");
 			return 0;
 		}
 		goto pass;
@@ -156,7 +156,7 @@ int main(void){
 	printf(" ---------------------------- \n");	
 	
 	char manu;
-	printf("輸入需要的選項：");
+	printf("enter the choice you want：");
 	scanf(" %c",&manu);
 	if(manu=='a'){
 		system("CLS");
@@ -267,15 +267,29 @@ int main(void){
 			}
 		}
 		system("CLS");
-		goto manu;
-			
-			
-			
-			
-			
+		goto manu;	
 		}
 		
-		return 0;}
+	if(manu=='d'){
+		printf("continue?(y/n:)");
+		char keyd;
+		scanf(" %c", &keyd);
+		if(keyd=='n'){
+			return 0;
+		}
+		if(keyd=='y'){
+			system("CLS");
+			goto manu;
+		}
+		}
+	
+	else{
+		system("CLS");
+		goto manu;
+	}
+	
+	
+	return 0;}
 		
 		
 		
