@@ -190,6 +190,7 @@ int main(void){
 		
 		if(arr(seat,b)){
 			printf("\n arranged seat:\n");
+			printf("   1 2 3 4 5 6 7 8 9\n");
 			show(seat);
 			
 			printf("\n are you satisfied? (y/n):");
@@ -213,8 +214,67 @@ int main(void){
 				goto manu;}
 		}
 		
+		
+		}
+		
+	if(manu=='c'){
+		system("CLS");
+		char seat[9][9];
+		dot(seat);
+		random(seat);
+		printf("   1 2 3 4 5 6 7 8 9\n");
+		show(seat);
+		int askc,c;
+		int rowc,colc;
+		int ii,jj;
+		ask_c:
+		printf("how many seat you want choice?(1~9)");
+		scanf("%d",&askc);
+		if(askc>9||askc<1){
+			printf("wrong!\n");
+			goto ask_c;
+		}
+		
+		for(c=0;c<askc;c++){
+			ask_c2:
+			printf("enter row and column of the seat %d(e.g. 3 5)",c+1);
+			scanf("%d %d", &rowc, &colc);
+			
+			if(rowc<1||rowc>9||colc<1||colc>9){
+				printf("wrong\n");
+				goto ask_c2;
+			}
+			
+			if(seat[rowc-1][colc-1]!='.'){
+				printf("seat %d-%d is already taken!\n",rowc,colc);
+				goto ask_c2;
+			}
+			
+			seat[rowc-1][colc-1]='@';
+		}
+		
+		printf("\nyour selected seat :\n");
+		printf("   1 2 3 4 5 6 7 8 9\n");
+		show(seat);
+		
+		system("PAUSE");
+		
+		for(ii=0;ii<9;ii++){
+			for(jj=0;jj<9;jj++){
+				if(seat[ii][jj]=='@'){
+					seat[ii][jj]=='*';
+				}
+			}
+		}
+		system("CLS");
+		goto manu;
+			
+			
+			
+			
 			
 		}
+		
 		return 0;}
 		
 		
