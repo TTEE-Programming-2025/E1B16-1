@@ -60,9 +60,26 @@ int main(void){
 	printf("\n");
 	printf("輸入你要的選項：");
 	char choice;
+
+		
 	scanf(" %c",&choice) ;
-	
-	a(choice);
+	if(choice=='a'){
+		system("CLS");
+		ask_a:
+		printf("請輸入一整數值n介於5~10：");
+		int n;
+		scanf("%d",&n);
+		if(n<=10&&n>=5){
+		a(n);}
+		else{
+			system("CLS");
+			printf("輸入錯誤\n");
+			goto ask_a;
+		}
+		}
+	if(choice=='b'){
+		b();}
+		
 	system("CLS");
 	goto m;
 	
@@ -71,24 +88,21 @@ int main(void){
 	
 	return 0;
 }
-void a(int a){
-	if(a=='a'){
-	system("CLS");
-		printf("請輸入一整數值n介於5~10：");
-		
-		
-		 
-		int n,i;
-		scanf("%d",&n);
-		if(n>=5&&n<=10){
-			struct a{
+
+struct a{
 				char name[10];
 				int number;
 				int math;
 				int phy;
 				int eng;
-		 	} s[n];
-		 
+		 	} s[10];
+		 	
+int snum=0;
+		 		
+int a(int n){
+	system("CLS");
+	
+	int i;
 			for(i=0;i<n;i++){
 				printf("輸入學生%d 姓名：",i+1);
 				scanf(" %s",s[i].name);
@@ -119,10 +133,32 @@ void a(int a){
 				if(s[i].eng>100||s[i].eng<0){
 					printf("wrong,please enter again\n");
 					goto eng;
+					
 				}
-				
+				snum++;
 				printf("\n");
+				
 			}
 		}
 	
-}}
+
+
+void b(){
+	system("CLS");
+	int i;
+	for(i=0;i<snum;i++){
+		printf("學生姓名：%s\n",s[i].name);
+		printf("學生學號：%d\n",s[i].number);
+		printf("平均成績：%3.1f\n",(float)(s[i].math+s[i].phy+s[i].eng)/3);
+
+		printf("\n");
+	}
+	system("PAUSE");
+}
+	 
+		
+		
+	
+	
+
+
