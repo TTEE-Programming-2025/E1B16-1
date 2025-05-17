@@ -82,6 +82,8 @@ int main(void){
 		
 	if(choice=='c'){
 		c();}
+	if(choice=='d'){
+		d();}
 	system("CLS");
 	goto m;
 	
@@ -97,7 +99,9 @@ struct a{
 				int math;
 				int phy;
 				int eng;
-		 	} s[10];
+				float avg;
+		 	} ;
+struct a s[10];
 		 	
 int snum=0;
 		 		
@@ -137,6 +141,7 @@ int a(int n){
 					goto eng;
 					
 				}
+				s[i].avg=(float)(s[i].math+s[i].phy+s[i].eng)/3;
 				snum++;
 				printf("\n");
 				
@@ -154,7 +159,7 @@ void b(){
 		printf("數學成績：%d\n",s[i].math);
 		printf("物理成績：%d\n",s[i].phy);
 		printf("英文成績：%d\n",s[i].eng);
-		printf("平均成績：%3.1f\n",(float)(s[i].math+s[i].phy+s[i].eng)/3);
+		printf("平均成績：%3.1f\n",s[i].avg);
 
 		printf("\n");
 	}
@@ -174,7 +179,7 @@ void c(){
 		printf("數學成績：%d\n",s[i].math);
 		printf("物理成績：%d\n",s[i].phy);
 		printf("英文成績：%d\n",s[i].eng);
-		printf("平均成績：%3.1f\n",(float)(s[i].math+s[i].phy+s[i].eng)/3);
+		printf("平均成績：%3.1f\n",s[i].avg);
 		}
 		else{
 			ser++;
@@ -182,13 +187,46 @@ void c(){
 		
 	}
 	if(ser==snum){
-		printf("資料不存在");
+		printf("資料不存在\n");
 	}
 	system("PAUSE");
-	
-	
+
 }
-	 
+
+void swap(struct a *a, struct a *b){
+	struct a temp=*a;
+	*a=*b;
+	*b=temp;
+}
+
+void arr(struct a s[],int n){
+	int i,j;
+	for(i=0;i<n-1;i++){
+		for(j=0;j<n-i-1;j++){
+			if(s[j].avg<s[j+1].avg){
+				swap(&s[j],&s[j+1]);
+			}
+		}	
+	}
+} 
+
+void d(){
+	system("CLS");
+	arr(s,snum);
+	
+	int i;
+	for(i=0;i<snum;i++){
+		printf("學生姓名：%s\n",s[i].name);
+		printf("學生學號：%d\n",s[i].number);
+		printf("平均成績：%3.1f\n",s[i].avg);
+		printf("\n");
+	}	
+		
+		
+		
+	system("PAUSE");
+}
+
 		
 		
 	
