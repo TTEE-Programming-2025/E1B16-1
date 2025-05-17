@@ -80,6 +80,8 @@ int main(void){
 	if(choice=='b'){
 		b();}
 		
+	if(choice=='c'){
+		c();}
 	system("CLS");
 	goto m;
 	
@@ -101,7 +103,7 @@ int snum=0;
 		 		
 int a(int n){
 	system("CLS");
-	
+	snum=0;
 	int i;
 			for(i=0;i<n;i++){
 				printf("輸入學生%d 姓名：",i+1);
@@ -149,11 +151,42 @@ void b(){
 	for(i=0;i<snum;i++){
 		printf("學生姓名：%s\n",s[i].name);
 		printf("學生學號：%d\n",s[i].number);
+		printf("數學成績：%d\n",s[i].math);
+		printf("物理成績：%d\n",s[i].phy);
+		printf("英文成績：%d\n",s[i].eng);
 		printf("平均成績：%3.1f\n",(float)(s[i].math+s[i].phy+s[i].eng)/3);
 
 		printf("\n");
 	}
 	system("PAUSE");
+}
+
+void c(){
+	system("CLS");
+	printf("輸入要搜尋的同學姓名：");
+	char name[10];
+	scanf(" %s",name);
+	int i,ser=0;
+	for(i=0;i<snum;i++){
+		if(strcmp(name,s[i].name)==0){
+		printf("學生姓名：%s\n",s[i].name);
+		printf("學生學號：%d\n",s[i].number);
+		printf("數學成績：%d\n",s[i].math);
+		printf("物理成績：%d\n",s[i].phy);
+		printf("英文成績：%d\n",s[i].eng);
+		printf("平均成績：%3.1f\n",(float)(s[i].math+s[i].phy+s[i].eng)/3);
+		}
+		else{
+			ser++;
+		}
+		
+	}
+	if(ser==snum){
+		printf("資料不存在");
+	}
+	system("PAUSE");
+	
+	
 }
 	 
 		
